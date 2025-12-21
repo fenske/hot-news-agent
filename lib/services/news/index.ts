@@ -54,3 +54,8 @@ export async function getNews(forceRefresh = false): Promise<NewsResponse> {
 export function clearCache(): void {
   cache.clear();
 }
+
+export async function getStoryById(id: string): Promise<NewsArticle | null> {
+  const news = await getNews();
+  return news.articles.find((article) => article.id === id) || null;
+}
