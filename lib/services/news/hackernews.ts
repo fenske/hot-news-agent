@@ -68,10 +68,15 @@ export async function fetchTopStories(limit = 50): Promise<HNStory[]> {
   return stories.filter((story): story is HNStory => story !== null);
 }
 
+// Pre-compile regex patterns with word boundaries for accurate matching
+const AI_PATTERNS = AI_KEYWORDS.map(
+  (kw) => new RegExp(`\\b${kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i')
+);
+
 export function filterAIContent(stories: HNStory[]): HNStory[] {
   return stories.filter((story) => {
-    const text = `${story.title} ${story.text || ''}`.toLowerCase();
-    return AI_KEYWORDS.some((kw) => text.includes(kw));
+    const text = `${story.title} ${story.text || ''}`;
+    return AI_PATTERNS.some((pattern) => pattern.test(text));
   });
 }
 
@@ -91,23 +96,27 @@ export function normalizeHNStory(story: HNStory): NewsArticle {
   };
 }
 
+// Helper to create word boundary regex
+function createWordBoundaryPattern(keyword: string): RegExp {
+  return new RegExp(`\\b${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+}
+
 function detectTags(title: string): string[] {
   const tags: string[] = [];
-  const lowerTitle = title.toLowerCase();
 
-  const tagPatterns: Record<string, string[]> = {
-    LLM: ['llm', 'gpt', 'claude', 'gemini', 'mistral', 'llama', 'chatgpt'],
-    'Machine Learning': ['machine learning', 'ml', 'deep learning', 'neural'],
-    OpenAI: ['openai', 'gpt', 'chatgpt', 'sora'],
-    Anthropic: ['anthropic', 'claude'],
-    Google: ['google', 'gemini', 'deepmind'],
-    'Computer Vision': ['computer vision', 'diffusion', 'stable diffusion', 'midjourney', 'image'],
-    NLP: ['nlp', 'language model', 'transformer'],
-    Research: ['paper', 'research', 'study'],
+  const tagPatterns: Record<string, RegExp[]> = {
+    LLM: ['llm', 'gpt', 'claude', 'gemini', 'mistral', 'llama', 'chatgpt'].map(createWordBoundaryPattern),
+    'Machine Learning': ['machine learning', 'ml', 'deep learning', 'neural'].map(createWordBoundaryPattern),
+    OpenAI: ['openai', 'gpt', 'chatgpt', 'sora'].map(createWordBoundaryPattern),
+    Anthropic: ['anthropic', 'claude'].map(createWordBoundaryPattern),
+    Google: ['google', 'gemini', 'deepmind'].map(createWordBoundaryPattern),
+    'Computer Vision': ['computer vision', 'diffusion', 'stable diffusion', 'midjourney', 'image'].map(createWordBoundaryPattern),
+    NLP: ['nlp', 'language model', 'transformer'].map(createWordBoundaryPattern),
+    Research: ['paper', 'research', 'study'].map(createWordBoundaryPattern),
   };
 
-  for (const [tag, keywords] of Object.entries(tagPatterns)) {
-    if (keywords.some((kw) => lowerTitle.includes(kw))) {
+  for (const [tag, patterns] of Object.entries(tagPatterns)) {
+    if (patterns.some((pattern) => pattern.test(title))) {
       tags.push(tag);
     }
   }
