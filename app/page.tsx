@@ -1,20 +1,9 @@
-import { NewsList } from './components/NewsList';
-import { getNews } from '@/lib/services/news';
+import { NewsFeed } from './components/NewsFeed';
 import { Separator } from '@/components/ui/separator';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Coffee, Sparkles } from 'lucide-react';
 
-export const revalidate = 300; // ISR: 5 minutes
-
-export default async function Home() {
-  let initialData;
-
-  try {
-    initialData = await getNews();
-  } catch (error) {
-    console.error('Failed to fetch initial news:', error);
-  }
-
+export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white dark:from-zinc-950 dark:to-zinc-900">
       {/* Header */}
@@ -58,7 +47,7 @@ export default async function Home() {
         <Separator className="my-8" />
 
         {/* News list */}
-        <NewsList initialData={initialData} />
+        <NewsFeed />
       </main>
 
       {/* Footer */}

@@ -1,8 +1,10 @@
+export type SourceType = 'hackernews' | 'rss' | 'github';
+
 export interface NewsArticle {
   id: string;
   title: string;
   url: string;
-  source: 'hackernews' | 'rss';
+  source: SourceType;
   sourceId: string;
   publishedAt: Date;
   author?: string;
@@ -11,6 +13,32 @@ export interface NewsArticle {
   commentsUrl?: string;
   excerpt?: string;
   tags: string[];
+}
+
+// Convex item with source info attached
+export interface ConvexNewsItem {
+  _id: string;
+  _creationTime: number;
+  sourceId: string;
+  externalId: string;
+  type: 'article' | 'discussion' | 'repo';
+  title: string;
+  url: string;
+  author?: string;
+  publishedAt: number;
+  collectedAt: number;
+  score?: number;
+  commentsCount?: number;
+  commentsUrl?: string;
+  importanceScore: number;
+  contentHash: string;
+  canonicalItemId?: string;
+  tags: string[];
+  source: {
+    name: string;
+    type: SourceType;
+  } | null;
+  velocity?: number;
 }
 
 export interface NewsResponse {

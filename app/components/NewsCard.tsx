@@ -4,7 +4,7 @@ import { NewsArticle } from '@/types/news';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { formatRelativeTime, formatNumber } from '@/lib/utils';
-import { ArrowUpRight, MessageSquare, TrendingUp, Clock, User } from 'lucide-react';
+import { ArrowUpRight, MessageSquare, TrendingUp, Clock, User, Newspaper, Github } from 'lucide-react';
 
 interface NewsCardProps {
   article: NewsArticle;
@@ -103,8 +103,26 @@ export function NewsCard({ article, index }: NewsCardProps) {
             {/* Source badge */}
             <div className="mt-3">
               <span className="inline-flex items-center gap-1.5 text-xs text-zinc-400 dark:text-zinc-500">
-                <span className="w-1.5 h-1.5 rounded-full bg-teal-500" />
-                {article.source === 'hackernews' ? 'Hacker News' : article.source}
+                {article.source === 'hackernews' && (
+                  <>
+                    <span className="w-4 h-4 rounded bg-orange-500 flex items-center justify-center text-white text-[10px] font-bold">
+                      Y
+                    </span>
+                    Hacker News
+                  </>
+                )}
+                {article.source === 'rss' && (
+                  <>
+                    <Newspaper className="w-4 h-4 text-teal-500" />
+                    RSS
+                  </>
+                )}
+                {article.source === 'github' && (
+                  <>
+                    <Github className="w-4 h-4" />
+                    GitHub
+                  </>
+                )}
               </span>
             </div>
           </div>
