@@ -2,7 +2,7 @@ import { NewsList } from './components/NewsList';
 import { getNews } from '@/lib/services/news';
 import { Separator } from '@/components/ui/separator';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { Zap, Sparkles } from 'lucide-react';
+import { Coffee, Sparkles } from 'lucide-react';
 
 export const revalidate = 300; // ISR: 5 minutes
 
@@ -22,15 +22,15 @@ export default async function Home() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center shadow-lg shadow-orange-500/25">
-                <Zap className="w-5 h-5 text-white" />
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-400 flex items-center justify-center shadow-lg shadow-teal-500/20">
+                <Coffee className="w-5 h-5 text-white" />
               </div>
               <div>
                 <h1 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
-                  Hot AI News
+                  AI News Without Burnout
                 </h1>
                 <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                  Trending discussions and stories
+                  Stay informed, not overwhelmed
                 </p>
               </div>
             </div>
@@ -43,15 +43,15 @@ export default async function Home() {
       <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
         {/* Hero section */}
         <div className="mb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-100 dark:bg-orange-950/50 text-orange-700 dark:text-orange-400 text-sm font-medium mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-100 dark:bg-teal-950/50 text-teal-700 dark:text-teal-400 text-sm font-medium mb-4">
             <Sparkles className="w-4 h-4" />
-            Live from Hacker News
+            5-minute daily digest
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-3">
-            Stay ahead of the AI curve
+            AI News Without Burnout
           </h2>
           <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl">
-            The latest AI news, research breakthroughs, and tech discussions curated from top sources.
+            The essential AI updates you need. No doom-scrolling required.
           </p>
         </div>
 
@@ -65,7 +65,7 @@ export default async function Home() {
       <footer className="border-t border-zinc-200 dark:border-zinc-800 mt-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
           <p className="text-sm text-zinc-500 dark:text-zinc-400 text-center">
-            Powered by Hacker News API. Content curated for AI-related topics.
+            Curated AI news from top sources. Your time matters.
           </p>
         </div>
       </footer>

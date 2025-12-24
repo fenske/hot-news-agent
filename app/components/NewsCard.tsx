@@ -18,12 +18,12 @@ export function NewsCard({ article, index }: NewsCardProps) {
     <Card
       className={`group relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 border-0 ${
         isTopStory
-          ? 'bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/20 dark:to-amber-950/20'
+          ? 'bg-gradient-to-br from-teal-50 to-emerald-50 dark:from-teal-950/20 dark:to-emerald-950/20'
           : 'bg-white dark:bg-zinc-900'
       }`}
     >
       {isTopStory && (
-        <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-orange-500 to-amber-500" />
+        <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-teal-500 to-emerald-400" />
       )}
 
       <CardContent className="p-5">
@@ -32,7 +32,7 @@ export function NewsCard({ article, index }: NewsCardProps) {
           <div
             className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
               isTopStory
-                ? 'bg-gradient-to-br from-orange-500 to-amber-500 text-white'
+                ? 'bg-gradient-to-br from-teal-500 to-emerald-400 text-white'
                 : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400'
             }`}
           >
@@ -47,7 +47,7 @@ export function NewsCard({ article, index }: NewsCardProps) {
               rel="noopener noreferrer"
               className="block group/link"
             >
-              <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 leading-snug group-hover/link:text-orange-600 dark:group-hover/link:text-orange-400 transition-colors">
+              <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 leading-snug group-hover/link:text-teal-600 dark:group-hover/link:text-teal-400 transition-colors">
                 {article.title}
                 <ArrowUpRight className="inline-block ml-1 w-4 h-4 opacity-0 -translate-y-0.5 translate-x-0.5 group-hover/link:opacity-100 transition-all" />
               </h2>
@@ -70,7 +70,7 @@ export function NewsCard({ article, index }: NewsCardProps) {
             <div className="flex items-center gap-4 mt-3 text-sm text-zinc-500 dark:text-zinc-400">
               {article.score !== undefined && (
                 <div className="flex items-center gap-1.5">
-                  <TrendingUp className="w-4 h-4 text-orange-500" />
+                  <TrendingUp className="w-4 h-4 text-teal-500" />
                   <span className="font-medium">{formatNumber(article.score)}</span>
                 </div>
               )}
@@ -80,7 +80,7 @@ export function NewsCard({ article, index }: NewsCardProps) {
                   href={article.commentsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+                  className="flex items-center gap-1.5 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>{formatNumber(article.commentsCount)}</span>
@@ -103,7 +103,7 @@ export function NewsCard({ article, index }: NewsCardProps) {
             {/* Source badge */}
             <div className="mt-3">
               <span className="inline-flex items-center gap-1.5 text-xs text-zinc-400 dark:text-zinc-500">
-                <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
+                <span className="w-1.5 h-1.5 rounded-full bg-teal-500" />
                 {article.source === 'hackernews' ? 'Hacker News' : article.source}
               </span>
             </div>

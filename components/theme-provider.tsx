@@ -19,7 +19,7 @@ interface ThemeContextValue {
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
-const STORAGE_KEY = "hot-news-theme";
+const STORAGE_KEY = "ai-news-theme";
 
 function getSystemTheme(): ResolvedTheme {
   if (typeof window === "undefined") return "light";
