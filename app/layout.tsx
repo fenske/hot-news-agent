@@ -14,14 +14,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Hot AI News",
-  description: "The latest AI news, research breakthroughs, and tech discussions curated from top sources.",
+  title: "AI News Without Burnout",
+  description: "Stay informed on AI in minutes, not hours. Curated news that respects your time.",
 };
 
 // Inline script to prevent flash of wrong theme
 const themeScript = `
   (function() {
-    const stored = localStorage.getItem('hot-news-theme');
+    const stored = localStorage.getItem('ai-news-theme');
     const theme = stored || 'system';
     const resolved = theme === 'system'
       ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')

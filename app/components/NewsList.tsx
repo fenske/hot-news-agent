@@ -90,10 +90,10 @@ export function NewsList({ initialData }: NewsListProps) {
           <Newspaper className="w-8 h-8 text-zinc-400" />
         </div>
         <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
-          No AI news found
+          You're all caught up
         </h3>
         <p className="text-sm text-zinc-500 dark:text-zinc-400 text-center max-w-md">
-          Check back later for the latest AI news, interviews, and discussions.
+          No new updates right now. Take a break — we'll have fresh news soon.
         </p>
       </div>
     );
